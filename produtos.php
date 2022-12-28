@@ -107,9 +107,8 @@
 	
 	<div class = "containerprincipal">
 		<p class="titulo" style="font-size: 3rem; font-weight: 800; margin-bottom: 25px;">Camera</p>
-		<form action="" method="POST" class=""> 
+		 
 			<div class= "row">
-				teste
 				<div class="col-md-3 col-sm-6">
                     <div class="thumbnail">
                         <a href="cart.php">
@@ -187,7 +186,6 @@
                     </div>
 				</div>
 			</div>
-		</form>
 	</div>			
 </body>
 </html>
