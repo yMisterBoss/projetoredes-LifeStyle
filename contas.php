@@ -163,7 +163,7 @@
                                 }else{
                             ?>
                                     <tr>
-                                        <td colspan="6">No Record Found</td>
+                                        <td colspan="6">Sem contas registradas</td>
                                     </tr>
                             <?php
                                 }

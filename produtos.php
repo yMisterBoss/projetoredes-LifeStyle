@@ -11,8 +11,16 @@
 	if ($result->num_rows > 0) {
 		$row = mysqli_fetch_assoc($result);
 		$_SESSION['produto'] = array($row["id"], $row["nome"], $row["preco"], $row["categoria"], $row["srcimagem"]);
-
 	}
+	
+	$sql = "SELECT * FROM `categoria`";
+	$result = mysqli_query($conn, $sql);
+
+	if ($result->num_rows > 0) {
+		$row = mysqli_fetch_assoc($result);
+		$_SESSION['categoria'] = array($row["id"], $row["categoria"]);
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -99,93 +107,89 @@
 			// executa a query
 			$result = mysqli_query($conn, $sql);
 			// transforma os dados em um array
-			$linha = mysqli_fetch_array($result);
+			$linhaproduto = mysqli_fetch_array($result);
 			// calcula quantos dados retornaram
-			$total = mysqli_num_rows($result);   
-			}		
+			$totalproduto = mysqli_num_rows($result);   
+		}
+		
+		if(is_array($_SESSION["categoria"])){
+			include 'basedados/config.php';
+
+			$sql = ("SELECT * FROM `categoria`");
+			// executa a query
+			$result = mysqli_query($conn, $sql);
+			// transforma os dados em um array
+			$linhacategoria = mysqli_fetch_array($result);
+			// calcula quantos dados retornaram
+			$totalcategoria = mysqli_num_rows($result);   
+		}
+	?>
+	<?php
+		$sql =("SELECT * FROM `categoria`");
+		$result = mysqli_query($conn, $sql);
+
+		if ($result->num_rows > 0) {
+			$row = mysqli_fetch_assoc($result);
+			
+			foreach ($result as $linhacategoria) {
+				$categoriaid =	$linhacategoria["id"];			
+				$categorianome = $linhacategoria["categoria"];
+	?>
+				<div class = "containerprincipal">
+					<p class="titulo" style="font-size: 3rem; font-weight: 800; margin-bottom: 25px;"><?php echo "$categorianome"?></p>
+						<div class= "row">
+							<?php
+								$sql =("SELECT * FROM `produtos`");
+								$result = mysqli_query($conn, $sql);
+						
+								if ($result->num_rows > 0) {
+									$row = mysqli_fetch_assoc($result);
+
+									foreach ($result as $linhaproduto) {
+										$produtocategoria = $linhaproduto["categoria"];
+										$produtopreco = $linhaproduto["preco"];				
+										$produtonome = $linhaproduto["name"];
+										$produtosrcimagem = $linhaproduto["srcimagem"];
+
+										if($categoriaid == $produtocategoria){
+							?>
+											<div class="col-md-3 col-sm-6">
+												<div class="thumbnail">
+													<a href="cart.php">
+														<img src=<?php echo"$produtosrcimagem" ?> alt=<?php echo "$categorianome"?>>
+													</a>
+													<center>
+														<div class="caption">
+															<h3><?php echo"$produtonome" ?></h3>
+															<p>Price: Rs. <?php echo"$produtopreco" ?></p>                
+														</div>
+													</center>
+												</div>
+											</div>				
+							<?php
+										}
+										
+									}
+								}else{
+							?>
+									<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px; color:red">Sem Produtos</p>
+							<?php
+								}
+							?>
+						</div>
+				</div>
+						
+				<br><br>
+	<?php
+
+			}
+			
+		}else{
+	?>
+			<p class="titulo" style="font-size: 3rem; font-weight: 800; margin-bottom: 25px;">Sem Categorias</p>
+	<?php
+		}
 	?>
 	
-	<div class = "containerprincipal">
-		<p class="titulo" style="font-size: 3rem; font-weight: 800; margin-bottom: 25px;">Camera</p>
-		 
-			<div class= "row">
-				<div class="col-md-3 col-sm-6">
-                    <div class="thumbnail">
-                        <a href="cart.php">
-							<img src="img/camera.jpg" alt="Camera" >
-                        </a>
-                        <center>
-                            <div class="caption">
-                                <h3>Cannon EOS</h3>
-                                <p>Price: Rs. 36000.00</p>                
-                            </div>
-                        </center>
-                    </div>
-                </div>
-
-				<div class="col-md-3 col-sm-6">
-                    <div class="thumbnail">
-                        <a href="cart.php">
-							<img src="img/camera.jpg" alt="Camera" >
-                        </a>
-                        <center>
-                            <div class="caption">
-                                <h3>Cannon EOS</h3>
-                                <p>Price: Rs. 36000.00</p>
-                                    
-                            </div>
-                        </center>
-                    </div>
-                </div>
-
-					<div class="col-md-3 col-sm-6">
-                        <div class="thumbnail">
-                            <a href="cart.php">
-							<img src="img/camera.jpg" alt="Camera" >
-                            </a>
-                            <center>
-                                <div class="caption">
-                                    <h3>Cannon EOS</h3>
-                                    <p>Price: Rs. 36000.00</p>
-                                    
-                                </div>
-                            </center>
-                        </div>
-                    </div>
-					<div class="col-md-3 col-sm-6">
-                        <div class="thumbnail">
-                            <a href="cart.php">
-							<img src="img/camera.jpg" alt="Camera" >
-                            </a>
-                            <center>
-                                <div class="caption">
-                                    <h3>Cannon EOS</h3>
-                                    <p>Price: Rs. 36000.00</p>
-                                    
-                                </div>
-                            </center>
-                        </div>
-                    </div>
-
-					<div class="col-md-3 col-sm-6">
-                        <div class="thumbnail">
-                            <a href="cart.php">
-							<img src="img/camera.jpg" alt="Camera" >
-                            </a>
-                            <center>
-                                <div class="caption">
-                                    <h3>Cannon EOS</h3>
-                                    <p>Price: Rs. 36000.00</p>
-                                   
-                                        <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                        
-                                    
-                                </div>
-                            </center>	
-                        </div>
-                    </div>
-				</div>
-			</div>
-	</div>			
 </body>
 </html>
