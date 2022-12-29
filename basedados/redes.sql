@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29-Dez-2022 às 13:20
+-- Tempo de geração: 29-Dez-2022 às 17:03
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.1
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `redes`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `carrinho`
+--
+
+CREATE TABLE `carrinho` (
+  `id` int(11) NOT NULL,
+  `idcliente` int(11) NOT NULL,
+  `idproduto` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -60,9 +73,7 @@ CREATE TABLE `loginregister` (
 --
 
 INSERT INTO `loginregister` (`ID`, `name`, `email`, `password`, `nivel`) VALUES
-(1, 'Nuno', '18nunogaspar@gmail.com', '123', 1),
-(6, 'Hugo', 'Hugo@Hugo.com', '123', 0),
-(7, 'cuper', 'cuper@cuper.com', '123', 1);
+(1, 'Admin', 'admin@admin.pt', 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -79,8 +90,24 @@ CREATE TABLE `produtos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Extraindo dados da tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id`, `name`, `preco`, `categoria`, `srcimagem`) VALUES
+(1, 'Cannon EOS', 36000, 1, 'imgprodutos/camera.jpg'),
+(2, 'Titan Model #201', 3000, 2, 'imgprodutos/titan201.jpg'),
+(3, 'Raymond', 1500, 3, 'imgprodutos/raymond.jpg');
+
+--
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `carrinho`
+--
+ALTER TABLE `carrinho`
+  ADD KEY `idcliente` (`idcliente`),
+  ADD KEY `idproduto` (`idproduto`);
 
 --
 -- Índices para tabela `categoria`
@@ -121,11 +148,18 @@ ALTER TABLE `loginregister`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `carrinho`
+--
+ALTER TABLE `carrinho`
+  ADD CONSTRAINT `carrinho_ibfk_1` FOREIGN KEY (`idcliente`) REFERENCES `loginregister` (`ID`),
+  ADD CONSTRAINT `carrinho_ibfk_2` FOREIGN KEY (`idproduto`) REFERENCES `produtos` (`id`);
 
 --
 -- Limitadores para a tabela `produtos`

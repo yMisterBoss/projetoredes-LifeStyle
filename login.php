@@ -60,7 +60,7 @@
 				<div class="input-group">
 					<button name="submit" class="btn">Login</button>
 				</div>
-				<p class="login-register-text">Não tem conta? <a href="register.php">Registra Aqui</a>.</p>
+				<p class="login-register-text">Não tem conta? <a href="register.php">Criar Conta</a>.</p>
 			</form>
 		</div>
 	</center>

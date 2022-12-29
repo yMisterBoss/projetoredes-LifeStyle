@@ -79,7 +79,7 @@
 	<center>
 		<div class="container">
 			<form action="" method="POST" class="login-email">
-		        <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
+		        <p class="login-text" style="font-size: 2rem; font-weight: 800;">Registar</p>
 				<div class="input-group">
 					<input type="text" placeholder="Nome" name="name" value="<?php echo $name; ?>" required>
 				</div>
@@ -93,7 +93,7 @@
 					<input type="password" placeholder="Confirmar Palavra-Passe" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
 				</div>
 				<div class="input-group">
-					<button name="submit" class="btn">Register</button>
+					<button name="submit" class="btn">Registar</button>
 				</div>
 				<p class="login-register-text">Já tem conta? <a href="login.php">Clique para logar</a>.</p>
 			</form>

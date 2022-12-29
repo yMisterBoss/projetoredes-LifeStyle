@@ -155,13 +155,21 @@
 							?>
 											<div class="col-md-3 col-sm-6">
 												<div class="thumbnail">
-													<a href="cart.php">
-														<img src=<?php echo"$produtosrcimagem" ?> alt=<?php echo "$categorianome"?>>
-													</a>
+													<img src=<?php echo"$produtosrcimagem" ?> alt=<?php echo "$categorianome"?>>					
 													<center>
 														<div class="caption">
 															<h3><?php echo"$produtonome" ?></h3>
-															<p>Price: Rs. <?php echo"$produtopreco" ?></p>                
+															<p>Price: Rs. <?php echo"$produtopreco" ?></p>
+															
+															<?php
+																if (isset($_SESSION['loginregister']) || isset($_SESSION["user"])) {
+															?>
+																	<p><a href="carrinho.php" role="button" class="btn btn-primary btn-block">Comprar</a></p>
+															<?php
+																}
+															?>
+															
+															              
 														</div>
 													</center>
 												</div>
