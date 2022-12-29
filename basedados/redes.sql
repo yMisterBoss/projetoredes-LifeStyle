@@ -94,7 +94,7 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id`, `name`, `preco`, `categoria`, `srcimagem`) VALUES
-(1, 'Cannon EOS', 36000, 1, 'imgprodutos/camera.jpg'),
+(1, 'Cannon EOS', 36000, 1, 'imgprodutos/cannon_eos.jpg'),
 (2, 'Titan Model #201', 3000, 2, 'imgprodutos/titan201.jpg'),
 (3, 'Raymond', 1500, 3, 'imgprodutos/raymond.jpg');
 
