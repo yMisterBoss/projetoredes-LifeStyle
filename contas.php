@@ -28,6 +28,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="shortcut icon" href="img/lifestyleStore.png" />
 	   <title>Contas</title>
 
         <meta charset="utf-8">
@@ -173,6 +174,9 @@
                 </div>
             </center>
         <?php endif; ?>
-
+    <br>
+    <?php
+    	require 'footer.php';
+    ?>
 </body>
 </html>

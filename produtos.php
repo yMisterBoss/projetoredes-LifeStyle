@@ -137,54 +137,53 @@
 	?>
 				<div class = "containerprincipal">
 					<p class="titulo" style="font-size: 3rem; font-weight: 800; margin-bottom: 25px;"><?php echo "$categorianome"?></p>
-						<div class= "row">
-							<?php
-								$sql =("SELECT * FROM `produtos`");
-								$result = mysqli_query($conn, $sql);
+					<div class= "row">
+						<?php
+							$sql =("SELECT * FROM `produtos`");
+							$result = mysqli_query($conn, $sql);
 						
-								if ($result->num_rows > 0) {
-									$row = mysqli_fetch_assoc($result);
+							if ($result->num_rows > 0) {
+								$row = mysqli_fetch_assoc($result);
 
-									foreach ($result as $linhaproduto) {
-										$produtocategoria = $linhaproduto["categoria"];
-										$produtopreco = $linhaproduto["preco"];				
-										$produtonome = $linhaproduto["name"];
-										$produtosrcimagem = $linhaproduto["srcimagem"];
+								foreach ($result as $linhaproduto) {
+									$produtocategoria = $linhaproduto["categoria"];
+									$produtopreco = $linhaproduto["preco"];				
+									$produtonome = $linhaproduto["name"];
+									$produtosrcimagem = $linhaproduto["srcimagem"];
 
-										if($categoriaid == $produtocategoria){
-							?>
-											<div class="col-md-3 col-sm-6">
-												<div class="thumbnail">
-													<img src=<?php echo"$produtosrcimagem" ?> alt=<?php echo "$categorianome"?>>					
-													<center>
-														<div class="caption">
-															<h3><?php echo"$produtonome" ?></h3>
-															<p>Price: Rs. <?php echo"$produtopreco" ?></p>
-															
-															<?php
-																if (isset($_SESSION['loginregister']) || isset($_SESSION["user"])) {
-															?>
-																	<p><a href="carrinho.php" role="button" class="btn btn-primary btn-block">Comprar</a></p>
-															<?php
-																}
-															?>
-															
-															              
-														</div>
-													</center>
-												</div>
-											</div>				
-							<?php
-										}
-										
+									if($categoriaid == $produtocategoria){
+						?>
+										<div class="col-md-3 col-sm-6">
+											<div class="thumbnail">
+												<img src=<?php echo"$produtosrcimagem" ?> alt=<?php echo "$categorianome"?>>					
+												<center>
+													<div class="caption">
+														<h3><?php echo"$produtonome" ?></h3>
+														<p>Preço: <?php echo"$produtopreco"?>€</p>
+														
+														<?php
+															if (isset($_SESSION['loginregister']) || isset($_SESSION["user"])) {
+														?>
+																<p><a href="carrinho.php" role="button" class="btn btn-primary btn-block">Comprar</a></p>
+														<?php
+															}
+														?>
+																	              
+													</div>
+												</center>
+											</div>
+										</div>				
+						<?php
 									}
-								}else{
-							?>
-									<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px; color:red">Sem Produtos</p>
-							<?php
+									
 								}
-							?>
-						</div>
+							}else{
+						?>
+								<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px; color:red">Sem Produtos</p>
+						<?php
+							}
+						?>
+					</div>
 				</div>
 						
 				<br><br>
@@ -198,6 +197,8 @@
 	<?php
 		}
 	?>
-	
+	<?php
+    	require 'footer.php';
+    ?> 
 </body>
 </html>

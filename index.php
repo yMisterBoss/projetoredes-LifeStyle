@@ -90,19 +90,8 @@
             </div>
     	</div>
     </div>
-           
-    <footer class="footer">
-	    <div class="footer  modal-footer ">
-	        <div class="panel-footer">
-	           	<div class="container">
-	               	<center>
-	                   	<p>Contato: +351 123123123</p>
-	                   	<p>Site Criado por NunoGaspar</p>
-	               	</center>
-	            </div>
-	        </div>
-	    </div> 
-               
-    </footer>																														
+    <?php
+    	require 'footer.php';
+    ?>       																														
 </body>
 </html>

@@ -26,6 +26,7 @@
 ?>
 <html>
     <head>
+        <link rel="shortcut icon" href="img/lifestyleStore.png" />
         <title>Dashboard - <?php echo $namesession; ?></title>
 
         <meta charset="utf-8">
@@ -262,5 +263,9 @@
             }
 
         }
+    ?>
+    <br>
+    <?php
+    	require 'footer.php';
     ?>
 </html>

@@ -82,9 +82,7 @@
 			    transition: .3s;
 			}
 
-			.container .login-email .input-group input:focus, .container .login-email .input-group input:valid {
-			    border-color: #a29bfe;
-			}
+			
   			.container .input-group .btn {
 			    display: block;
 			    width: 100%;
@@ -129,6 +127,7 @@
 				</form>				
 			</div>
 		</center>
+		<br>
     </body>
     <?php
     	include 'basedados/config.php';
@@ -166,4 +165,7 @@
         }
 
     ?>
+	<?php
+    	require 'footer.php';
+    ?> 
 </html>

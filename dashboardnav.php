@@ -13,7 +13,21 @@
 			   	</div>
 			    <ul class="nav navbar-nav">
 			      	<li><a href="index.php">Inicio</a></li>
-			      	<li><a href="produtos.php">Produtos</a></li>
+			      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Produtos <span class="caret"></span></a>
+			        	<ul class="dropdown-menu">
+			          		<li><a href="produtos.php">Produtos</a></li>
+			          		<li><a href="addproduto.php">Adicionar</a></li>
+			          		<li><a href="updateproduto.php">Atualizar</a></li>
+			          		<li><a href="deleteproduto.php">Eliminar</a></li>
+			        	</ul>
+			      	</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Categoria <span class="caret"></span></a>
+			        	<ul class="dropdown-menu">
+			          		<li><a href="categoria.php">Produtos</a></li>
+			          		<li><a href="addcategoria.php">Adicionar</a></li>
+			          		<li><a href="deletecategoria.php">Eliminar</a></li>
+			        	</ul>
+			      	</li>
 			      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
 			        	<ul class="dropdown-menu">
 			          		<li><a href="contas.php">Contas</a></li>
@@ -25,7 +39,7 @@
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right">
 			    	<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
-					<li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
+					<li><a href="carrinho.php"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
 		       		<li><a href="dashboard.php"><span class="glyphicon glyphicon-cog"></span> Definições</a></li>
 			    </ul>
 			</div>
