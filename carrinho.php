@@ -1,3 +1,23 @@
+<?php
+	include 'basedados/config.php';
+	
+	session_start();
+
+	error_reporting(0);
+	
+    
+    $userid=$_SESSION['user'][0];
+    $sql=("SELECT * FROM `carrinho` WHERE carrinho.idcliente='$userid'");
+    $result=mysqli_query($conn,$sql);
+    
+	if ($result->num_rows > 0) {
+		$row = mysqli_fetch_assoc($result);
+		$_SESSION['carrinho'] = array($row["id"], $row["idcliente"], $row["idproduto"], $row["Status"]);
+	}
+    $precototal=0;
+    
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,12 +91,175 @@
     </head>
 <body>
 	<?php
-    	require 'nav.php';
-    ?>
+		require 'nav.php';
+	?>
+	<?php
+		if(is_array($_SESSION["carrinho"])){
+			include 'basedados/config.php';
+
+			$sql=("SELECT * FROM `carrinho` WHERE carrinho.idcliente='$userid'");
+			
+			// executa a query
+			$result = mysqli_query($conn, $sql);
+			// transforma os dados em um array
+			$linhacarrinho = mysqli_fetch_array($result);
+			// calcula quantos dados retornaram
+			$totalcarrinho = mysqli_num_rows($result);   
+		}
+
+		if(is_array($_SESSION["produto"])){
+			include 'basedados/config.php';
+
+			$sql = ("SELECT * FROM `produtos`");
+			// executa a query
+			$result = mysqli_query($conn, $sql);
+			// transforma os dados em um array
+			$linhaproduto = mysqli_fetch_array($result);
+			// calcula quantos dados retornaram
+			$totalproduto = mysqli_num_rows($result);   
+		}
+	?>
 
 	<div class = "containerprincipal">
 		<p class="titulo" style="font-size: 3rem; font-weight: 800; margin-bottom: 25px;">Carrinho</p>
-		
+		<div class = "row">
+		<?php
+			if($totalcarrinho==0){
+		?>
+				<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px; color:red">Sem Produtos</p>
+		<?php
+			}else{
+		?>
+
+				<div class="col-md-3 col-sm-6"> 
+					<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px;">Imagem</p>
+					<?php
+						$sql =("SELECT * FROM `carrinho`");
+						$result = mysqli_query($conn, $sql);
+				
+						if ($result->num_rows > 0) {
+							$row = mysqli_fetch_assoc($result);
+
+							foreach ($result as $linhacarrinho) {
+								$sql = ("SELECT * FROM `produtos`");
+								$result = mysqli_query($conn, $sql);
+
+								if ($result->num_rows > 0) {
+									$row = mysqli_fetch_assoc($result);
+
+									foreach ($result as $linhaproduto) {
+										$produtosrcimagem = $linhaproduto["srcimagem"];
+										$produtoid = $linhaproduto["id"];
+
+										if($produtoid == $linhacarrinho["idproduto"]){
+											if($linhacarrinho["Status"] == "adicionado ao carrinho" ){
+								?>
+												<div class="thumbnail">
+													<img src=<?php echo"$produtosrcimagem" ?> alt="carrinho">
+												</div>
+								<?php				
+											}
+										}
+									}
+								}
+							}
+						}
+					?>
+				</div>
+				<div class="col-md-3 col-sm-6"> 
+					<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px;">Nome</p>
+					<?php
+						
+						$sql =("SELECT * FROM `carrinho`");
+						$result = mysqli_query($conn, $sql);
+				
+						if ($result->num_rows > 0) {
+							$row = mysqli_fetch_assoc($result);
+
+							foreach ($result as $linhacarrinho) {
+								$sql = ("SELECT * FROM `produtos`");
+								$result = mysqli_query($conn, $sql);
+
+								if ($result->num_rows > 0) {
+									$row = mysqli_fetch_assoc($result);
+
+									foreach ($result as $linhaproduto) {			
+										$produtonome = $linhaproduto["name"];
+										$produtoid = $linhaproduto["id"];
+
+										if($produtoid == $linhacarrinho["idproduto"]){
+											if($linhacarrinho["Status"] == "adicionado ao carrinho" ){
+								?>
+												<div class="caption">
+												<br>
+														<h3><?php echo"$produtonome" ?></h3>
+														<br><br><br><br><br>
+												</div>
+								<?php				
+											}
+										}
+									}
+								}
+							}
+						}
+					?>
+						
+				</div>
+				<div class="col-md-3 col-sm-6"> 
+					<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px;">Preço</p>
+					<?php
+						
+						$sql =("SELECT * FROM `carrinho`");
+						$result = mysqli_query($conn, $sql);
+				
+						if ($result->num_rows > 0) {
+							$row = mysqli_fetch_assoc($result);
+
+							foreach ($result as $linhacarrinho) {
+								$sql = ("SELECT * FROM `produtos`");
+								$result = mysqli_query($conn, $sql);
+
+								if ($result->num_rows > 0) {
+									$row = mysqli_fetch_assoc($result);
+
+									foreach ($result as $linhaproduto) {
+										$produtopreco = $linhaproduto["preco"];	
+										$produtoid = $linhaproduto["id"];
+
+										if($produtoid == $linhacarrinho["idproduto"]){
+											if($linhacarrinho["Status"] == "adicionado ao carrinho" ){
+												$precototal += $produtopreco;
+								?>
+												<div class="caption">
+													<br>
+													<h3><p><?php echo"$produtopreco"?>€</p></h3>
+													<br><br><br><br><br>
+												</div>
+								<?php				
+											}
+										}
+									}
+								}
+							}
+						}
+					?>
+					
+				</div>
+				<div class="col-md-3 col-sm-6"> 
+					<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px;">Preço total</p>
+					<div class="caption">
+						<br>
+						<h3><p>Preço: <?php echo"$precototal"?>€</p></h3>
+						<br><br><br><br><br>
+					</div>
+				</div>
+		<?php
+				
+			}
+			
+		?>
+		</div>
+		<a href="<?php echo $caminho?>" class="btn btn-block btn-primary" name="add" value="add" >Confirmar Compra</a>
 	</div>
 	<br>
 
