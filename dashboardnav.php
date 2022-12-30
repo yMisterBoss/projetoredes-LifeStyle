@@ -63,7 +63,7 @@
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right">
 			    	<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
-					<li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
+					<li><a href="carrinho.php"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
 	        		<li class="active"><a href="dashboard.php"><span class="glyphicon glyphicon-cog"></span> Definições</a></li>
 			    </ul>
 			</div>
