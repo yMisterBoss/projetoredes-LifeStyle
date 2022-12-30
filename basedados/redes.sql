@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29-Dez-2022 às 17:03
+-- Tempo de geração: 30-Dez-2022 às 15:35
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.1
 
@@ -73,7 +73,7 @@ CREATE TABLE `loginregister` (
 --
 
 INSERT INTO `loginregister` (`ID`, `name`, `email`, `password`, `nivel`) VALUES
-(1, 'Admin', 'admin@admin.pt', 'admin', 1);
+(1, 'Admin', 'admin@admin.com', 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -106,6 +106,7 @@ INSERT INTO `produtos` (`id`, `name`, `preco`, `categoria`, `srcimagem`) VALUES
 -- Índices para tabela `carrinho`
 --
 ALTER TABLE `carrinho`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `idcliente` (`idcliente`),
   ADD KEY `idproduto` (`idproduto`);
 
@@ -133,10 +134,16 @@ ALTER TABLE `produtos`
 --
 
 --
+-- AUTO_INCREMENT de tabela `carrinho`
+--
+ALTER TABLE `carrinho`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `loginregister`

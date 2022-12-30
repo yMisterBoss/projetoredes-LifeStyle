@@ -99,7 +99,7 @@
     	require 'nav.php';
     ?>
 	<?php
-	
+		require 'check_if_added.php';
 		if(is_array($_SESSION["produto"])){
 			include 'basedados/config.php';
 
@@ -150,7 +150,10 @@
 									$produtopreco = $linhaproduto["preco"];				
 									$produtonome = $linhaproduto["name"];
 									$produtosrcimagem = $linhaproduto["srcimagem"];
+									$produtoid = $linhaproduto["id"];
 
+									$caminho = "addcarrinho.php?id=" . $produtoid;
+									
 									if($categoriaid == $produtocategoria){
 						?>
 										<div class="col-md-3 col-sm-6">
@@ -163,11 +166,22 @@
 														
 														<?php
 															if (isset($_SESSION['loginregister']) || isset($_SESSION["user"])) {
+																if(check_if_added_to_cart($produtoid)){																	
 														?>
-																<p><a href="carrinho.php" role="button" class="btn btn-primary btn-block">Comprar</a></p>
+																<a href="#" class="btn btn-block btn-success disabled">Adicionado no carrinho</a>
+														<?php																
+																}else{			
+														?>
+
+																	<a href="<?php echo $caminho?>" class="btn btn-block btn-primary" name="add" value="add" class="btn btn-block btr-primary">Comprar</a>
 														<?php
+																}
+														
+															
+																
 															}
 														?>
+														
 																	              
 													</div>
 												</center>

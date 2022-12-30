@@ -73,11 +73,13 @@
 	<?php
     	require 'nav.php';
     ?>
+
 	<div class = "containerprincipal">
 		<p class="titulo" style="font-size: 3rem; font-weight: 800; margin-bottom: 25px;">Carrinho</p>
-		<div class= "row">
-		</div>
+		
 	</div>
+	<br>
+
 	<?php
     	require 'footer.php';
     ?>

@@ -23,7 +23,7 @@
 			      	</li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Categoria <span class="caret"></span></a>
 			        	<ul class="dropdown-menu">
-			          		<li><a href="categoria.php">Produtos</a></li>
+			          		<li><a href="categoria.php">Categoria</a></li>
 			          		<li><a href="addcategoria.php">Adicionar</a></li>
 			          		<li><a href="deletecategoria.php">Eliminar</a></li>
 			        	</ul>
