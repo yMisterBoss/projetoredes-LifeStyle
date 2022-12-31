@@ -98,7 +98,7 @@
 		if(is_array($_SESSION["carrinho"])){
 			include 'basedados/config.php';
 
-			$sql=("SELECT * FROM `carrinho` WHERE carrinho.idcliente='$userid'");
+			$sql=("SELECT * FROM `carrinho` WHERE carrinho.idcliente='$userid' AND carrinho.Status= 'adicionado ao carrinho'");
 			
 			// executa a query
 			$result = mysqli_query($conn, $sql);
@@ -290,9 +290,9 @@
 				</div>
 			</div>
 			<div> 
-			<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px;">Preço total: <?php echo"$precototal"?>€</p>	
+				<p class="titulo" style="font-size: 2rem; font-weight: 800; margin-bottom: 25px;">Preço total: <?php echo"$precototal"?>€</p>	
 			</div>
-		<a href="<?php echo $caminho?>" class="btn btn-block btn-primary" name="add" value="add" >Confirmar Compra</a>
+		<a href="confirmarcarrinho.php?id=<?php echo $userid?>" class="btn btn-block btn-primary" name="add" value="add" >Confirmar Compra</a>
 		<?php
 				
 			}
