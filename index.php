@@ -7,9 +7,7 @@
         <meta charset="utf-8">
   		<meta name="viewport" content="width=device-width, initial-scale=1">
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+        <link rel="stylesheet" href="./css/estilos.css">
   		<style type="text/css">
 			body{
 				padding-top:0px;
@@ -90,6 +88,26 @@
             </div>
     	</div>
     </div>
+
+    <!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MB7HJ8K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+
+	<div class="aviso-cookies" id="aviso-cookies">
+		<img class="galleta" src="./img/cookie.svg" alt="Galleta">
+		<h3 class="titulo" style="color: black">Cookies</h3>
+		<p class="parrafo">Usamos cookies próprios e de terceiros para melhorar nossos serviços.</p>
+		<button class="boton" id="btn-aceptar-cookies">De acordo</button>
+		<a class="enlace" href="avisocookies.php">Aviso de Cookies</a>
+	</div>
+	<div class="fondo-aviso-cookies" id="fondo-aviso-cookies"></div>
+
+	<script src="js/aviso-cookies.js"></script>
+
+
+
     <?php
     	require 'footer.php';
     ?>       																														
