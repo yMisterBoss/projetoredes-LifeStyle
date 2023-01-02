@@ -16,6 +16,7 @@
 			      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Produtos <span class="caret"></span></a>
 			        	<ul class="dropdown-menu">
 			          		<li><a href="produtos.php">Produtos</a></li>
+							<li><a href="produtosall.php">Produtos Lista</a></li>
 			          		<li><a href="addproduto.php">Adicionar</a></li>
 			          		<li><a href="updateproduto.php">Atualizar</a></li>
 			          		<li><a href="deleteproduto.php">Eliminar</a></li>
@@ -23,6 +24,7 @@
 			      	</li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Categoria <span class="caret"></span></a>
 			        	<ul class="dropdown-menu">
+							<li><a href="categoriaall.php">Categoria Lista</a></li>
 			          		<li><a href="addcategoria.php">Adicionar</a></li>
 			          		<li><a href="deletecategoria.php">Eliminar</a></li>
 			        	</ul>

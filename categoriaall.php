@@ -1,5 +1,4 @@
 <?php
-    
     session_start();
 
     if(isset($_SESSION["user"]) && is_array($_SESSION["user"])){
@@ -25,11 +24,12 @@
         echo "<script>window.location = 'login.php'</script>";
     }
 ?>
-
+ 
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="shortcut icon" href="img/lifestyleStore.png" />
-        <title>Dashboard - <?php echo $namesession; ?></title>
+	   <title>Contas</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +50,7 @@
                 background-size: 100% 100%;
             }
             .container {
-                width: 400px;
+                width: 600px;
                 min-height: 400px;
                 background: #FFF;
                 border-radius: 10px;
@@ -103,84 +103,65 @@
             }
         </style>
     </head>
-
-    <body>
-    <?php
+<body>
+<?php
     	require 'dashboardnav.php';
     ?>
+        <?php if($nivelsession ==1): ?>
+            <center>
+                <div class="container">
+                    <table width="40%" class="login-email">
+                        <tbody>
+                            <?php
 
-        
-        <!--
+                                $query = "SELECT * FROM categoria ";
 
-        Atualizar
-                    
-        -->
-        <center>
-            <div class="container">
-                <p class="login-text" style="font-size: 2rem; font-weight: 800;">Atualizar Produto</p>
-                <form action="" method="POST" class="login-email" enctype="multipart/form-data">
-                    <div class="input-group">
-                        <input type="numer" placeholder="ID" name="id" value="" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" placeholder="Nome" name="name" value="" required>
-                    </div>
+                                if(isset($_POST['submit'])){
+                                    $search_term = mysqli_real_escape_string($conn, $_POST['search']);
+                                    $query .= "WHERE categoria LIKE '%{$search_term}%'";
+                                }
+                                
+                                if (isset($_POST["back"])){
+                                    $query = "SELECT * FROM categoria ";
+                                }
+                                 
+                                $result = mysqli_query($conn, $query);
 
-                    <div class="input-group">
-                        <input type="number" placeholder="Preco" name="preco" value="" required>
-                    </div>    
+                                if(mysqli_num_rows($result) > 0){
 
-                    <div class="input-group">
-                        <input type="number" placeholder="Categoria" name="categoria" value="" required>
-                    </div>
+                            ?>
+                                    <tr style="font-weight: bold">
+                                        <td>ID</td>
+                                        <td>Categoria</td>
+                                    </tr>
 
-                    <div class="input-group">
-                        <button  name="submit" class="btn"> Atualizar</button>          
-                    </div>
-                </form>
-            </div>
-        </center>
-    </body>
-    
-    <?php
-        include 'basedados/config.php';
-        
-        if(isset($_POST["submit"])) {
-            $id = $_POST['id'];
-            $name = $_POST['name'];
-            $preco = $_POST['preco'];
-            $categoria = $_POST['categoria'];
-            
-            $sql = ("SELECT * FROM `produtos` WHERE id = '$id'");
-            $result = mysqli_query($conn, $sql);
+                                    <?php
+                                        foreach ($result as $linha) {
+                                    ?>
 
-            if ($result->num_rows > 0) {
-                $sql = "SELECT * FROM `categoria` WHERE id = $categoria";
-                $result = mysqli_query($conn, $sql);
-                    
-                if ($result->num_rows > 0) {
-                    $sql = "UPDATE `produtos` SET name = '$name', preco = '$preco', categoria = '$categoria' WHERE ID = '$id'";
-                    $result = mysqli_query($conn, $sql);
-                        
-                    if ($result) {
-                        echo "<script>alert('Produto Atualizado com Sucesso')</script>"; 
-                        echo "<script>window.location = 'refresh.php'</script>";
-                    }else{
-                        echo "<script>alert('Woops! Algo está errado.')</script>";
-                        echo "<script>window.location = 'refresh.php'</script>";
-                    }
-                }else{
-                    echo "<script>alert('Woops! Essa categoria não existe.')</script>";
-                    echo "<script>window.location = 'refresh.php'</script>";
-                }
-            }else{
-                echo "<script>alert('Woops! Esse produto não existe.')</script>";
-                echo "<script>window.location = 'refresh.php'</script>";
-            }
-        }
-    ?>
+                                    <tr>
+                                        <td><?=$linha["id"]; ?></td>
+                                        <td><?=$linha["categoria"]; ?></td>
+                                    </tr>
+
+                            <?php
+                                        }
+                                }else{
+                            ?>
+                                    <tr>
+                                        <td colspan="6">Sem Categorias registradas</td>
+                                    </tr>
+                            <?php
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </center>
+        <?php endif; ?>
     <br>
     <?php
     	require 'footer.php';
     ?>
+</body>
 </html>

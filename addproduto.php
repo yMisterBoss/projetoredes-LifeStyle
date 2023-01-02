@@ -146,10 +146,13 @@
     </body>
     
     <?php
-    
+        include 'basedados/config.php';
         // Verifique se o arquivo de imagem é uma imagem real ou uma imagem falsa
         if(isset($_POST["submit"])) {
-
+            $name = $_POST['name'];
+            $preco = $_POST['preco'];
+            $categoria = $_POST['categoria'];
+            
             //especifica o diretório onde o arquivo será colocado
             $target_dir = "imgprodutos/";
             
@@ -166,7 +169,25 @@
                 $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
                 if($check !== false) {
                     $uploadOk = 1;
-                    echo "<script>alert('Você adicionou imagem.')</script>";
+                    $sql = "SELECT * FROM `categoria` WHERE id = $categoria";
+                    $result = mysqli_query($conn, $sql);
+                    
+                    if ($result->num_rows > 0) {
+                        $sql = "INSERT INTO `produtos`(name,preco,categoria,srcimagem) VALUES('$name', '$preco', '$categoria', '$target_file')";
+                        $result = mysqli_query($conn, $sql);
+                        
+                        if ($result) {
+                            echo "<script>alert('Produto Adicionado com Sucesso')</script>"; 
+                            echo "<script>window.location = 'refresh.php'</script>";
+                        }else{
+                            echo "<script>alert('Woops! Algo está errado.')</script>";
+                            echo "<script>window.location = 'refresh.php'</script>";
+                        }
+                       
+                    }else{
+                        echo "<script>alert('Woops! Essa categoria não existe.')</script>";
+                        echo "<script>window.location = 'refresh.php'</script>";
+                    }
                 } else {
                     $uploadOk = 0;
                     echo "<script>alert('Woops! Você não adicionou imagem.')</script>";
@@ -176,10 +197,6 @@
             }
            
         }
-
-        include 'basedados/config.php';
-
-        
     ?>
     <br>
     <?php
