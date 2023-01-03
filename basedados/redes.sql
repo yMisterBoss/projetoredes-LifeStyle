@@ -31,7 +31,7 @@ CREATE TABLE `carrinho` (
   `id` int(11) NOT NULL,
   `idcliente` int(11) NOT NULL,
   `idproduto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL
+  `Status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
